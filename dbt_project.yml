@@ -34,3 +34,13 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+      
+    01_raw:
+      +schema: raw
+      +materialized: table
+    02_stg:
+      +schema: stg
+      +materialized: view
+    03_det:
+      +schema: det
+      +materialized: incremental
