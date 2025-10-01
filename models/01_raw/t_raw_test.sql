@@ -1,0 +1,1 @@
+select 'hello world' as msg, current_timestamp as timestamp
