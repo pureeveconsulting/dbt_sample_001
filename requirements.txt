@@ -1,9 +1,9 @@
 # Core dbt and adapters
-#dbt-core==1.9.6        failed to install due to dependency issues
-#dbt-duckdb==1.9.3      failed to install due to dependency issues
+dbt-core==1.9.6        
+dbt-duckdb==1.9.3      
 
 # MySQL connectivity (via mysql-connector-python)
-mysql-connector-python==9.3.0
+#mysql-connector-python==9.3.0
 
 # Data wrangling
 pandas==2.2.3
