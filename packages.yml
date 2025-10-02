@@ -5,5 +5,5 @@ packages:
   - package: metaplane/dbt_expectations
     version: "0.10.9"      
 
-  - package: elementary-data/elementary
-    version: "0.19.4"  
+  # - package: elementary-data/elementary # not supported on duckdb yet
+  #   version: "0.19.4"  
