@@ -1,9 +1,8 @@
+config-version: 2
 
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
 name: 'dbt_sample_001'
-version: '1.0.0'
+version: "3.0.0"
+require-dbt-version: ">=1.10.13"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'dbt_sample_001'
@@ -16,25 +15,29 @@ analysis-paths: ["analyses"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
+asset-paths: ["assets"]
+docs-paths: ["docs"] 
 snapshot-paths: ["snapshots"]
 
+
+target-path: "target"  # compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
 
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
+vars:
+  "dbt_date:time_zone": "Europe/London"
 
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
+  # Canonical low timestamp for "never updated" rows
+  # Keep quotes inside the value so it can be used as a SQL literal directly:
+  # {{ var('low_date_ts') }}::datetime
+  low_date_ts: '1900-01-01 00:00:00'
+  # Canonical high timestamp for open-ended rows
+  high_date_ts: '9999-12-31 00:00:00'
+
 models:
-  dbt_sample_001:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
-      
+  dbt_sample_001:      
     01_raw:
       +schema: raw
       +materialized: table
@@ -44,3 +47,9 @@ models:
     03_det:
       +schema: det
       +materialized: incremental
+  # ----------------------------
+  # Elementary package models
+  # ----------------------------
+  # elementary:             #  not supported on duckdb yet
+  #   +schema: ctl
+  #   +tags: ['observability']
