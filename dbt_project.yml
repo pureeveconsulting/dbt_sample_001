@@ -43,7 +43,7 @@ models:
       +materialized: table
     02_stg:
       +schema: stg
-      +materialized: view
+      +materialized: table
     03_det:
       +schema: det
       +materialized: incremental
