@@ -47,9 +47,26 @@ models:
     03_det:
       +schema: det
       +materialized: incremental
+
+seeds:
+  +schema: raw
+
+  ref_go_methods:            
+    +quote_columns: true
+    +column_types:
+      "Order method code": integer   # keys with spaces must be quoted in YAML
+      "Order method type": varchar
+
+  ref_country_codes:            
+    +quote_columns: true
+    +column_types:
+      "Name": varchar
+      "Code": varchar
+
   # ----------------------------
   # Elementary package models
   # ----------------------------
   # elementary:             #  not supported on duckdb yet
   #   +schema: ctl
   #   +tags: ['observability']
+
